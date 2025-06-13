@@ -4,6 +4,7 @@
  * ! url possibles
  * ! index.php
  * ! index.php?route=category&category=1
+ * ! index.php?route=post&post=1
  * */
 
 if(isset($_GET['route']) && $_GET['route'] === "category" && isset($_GET['category'])){

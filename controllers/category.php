@@ -6,7 +6,8 @@ function categoryPage() : void
 
     require "managers/category_manager.php";
 
-    getPostsForCategory($categoryId);
+    $categoryPosts = getPostsForCategory($categoryId);
+    $category = getCategory($categoryId);
 
     $template = "templates/category.phtml";
     require "templates/layout.phtml";

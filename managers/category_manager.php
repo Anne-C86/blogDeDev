@@ -3,8 +3,12 @@
 function getCategory(int $categoryId) : array
 {
     // remplissez cette fonction pour qu'elle puisse récupérer toutes les infos d'une catégorie
-
-    return [];
+    require __DIR__ . "/../connexion.php";
+    $query = $db->prepare("SELECT * FROM categories WHERE categories.id = :categoryId");
+    $parameters = ["categoryId" => $categoryId];
+    $query->execute($parameters);
+    $category = $query->fetch(PDO::FETCH_ASSOC);
+    return $category;
 }
 
 function getCategories() : array
