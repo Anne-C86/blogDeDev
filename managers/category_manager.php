@@ -14,8 +14,11 @@ function getCategory(int $categoryId) : array
 function getCategories() : array
 {
     // remplissez cette fonction pour qu'elle puisse récupérer toutes les infos de toutes les catégories
-
-    return [];
+    require __DIR__ . "/../connexion.php";
+    $query = $db->prepare("SELECT * FROM categories");
+    $query->execute();
+    $categories = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $categories;
 }
 
 function getPostsForCategory(int $categoryId) : array
