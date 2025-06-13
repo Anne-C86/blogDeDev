@@ -17,8 +17,14 @@ function getCategories() : array
 function getPostsForCategory(int $categoryId) : array
 {
     // remplissez cette fonction pour qu'elle puisse récupérer tous les articles d'une catégorie ainsi que les infos de leur image
-
-    return [];
+    require __DIR__ . "/../connexion.php";
+    $query = $db->prepare("SELECT posts.*, medias.url, medias.alt FROM posts JOIN medias ON posts.image = medias.id WHERE posts.category = :categoryId");
+    $parameters = [
+        'categoryId' => $categoryId
+    ];
+    $query->execute($parameters);
+    $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $posts;
 }
 
 ?>
